@@ -14,10 +14,14 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String userName = request.getParameter("userName");
-        HttpSession session = request.getSession();
-        session.setAttribute("userName", userName);
+        // フォームから ID を取得
+        String userId = request.getParameter("userId");
 
+        // セッションに保存（後でヘッダーなどで表示できるように）
+        HttpSession session = request.getSession();
+        session.setAttribute("userId", userId);
+
+        // メインページに遷移
         request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 }
