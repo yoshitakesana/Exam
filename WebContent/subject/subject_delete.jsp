@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
-</html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<jsp:include page="../header.jsp" />
+
+<h2>科目情報削除</h2>
+<!-- ↓ここは本当はサーブレットから削除したい科目を持ってくる -->
+<label>〇〇〇を削除してもよろしいですか</label>
+<!-- ↓このボタンも適当に設置しただけ -->
+<input type="submit" name="action" value="削除">
+<p><a href="subject_list.jsp">科目一覧</a></p>
+
+<jsp:include page="../footer.jsp" />
+
