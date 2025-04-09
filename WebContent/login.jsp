@@ -8,7 +8,9 @@
     String error = (String) request.getAttribute("error");
     if (error != null) {
 %>
-    <p style="color: red;"><%= error %></p>
+<ul>
+    <li><p>ログインに失敗しました。IDまたはパスワードが正しくありません。</p></li>
+</ul>
 <%
     }
 %>
@@ -20,7 +22,3 @@
 </form>
 
 <jsp:include page="footer.jsp" />
-
-
-
-}
