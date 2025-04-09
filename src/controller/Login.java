@@ -29,7 +29,7 @@ public class Login extends HttpServlet {
             // 例: if (isValidUser(userId, password)) { ... }
 
             // メインページに遷移
-            request.getRequestDispatcher("/main.jsp").forward(request, response);
+            request.getRequestDispatcher("/menu.jsp").forward(request, response);
         } else {
             // パスワードやIDが不正の場合、エラーメッセージを表示（例）
             request.setAttribute("errorMessage", "ID または パスワードが不正です");
