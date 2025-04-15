@@ -10,18 +10,16 @@
 
 <jsp:include page="header.jsp" />
 
+<!-- 左側 -->
 <div class="main-container">
   <div class="menu-wrapper">
     <%@ include file="side.jsp" %>
   </div>
 
+<!-- 右側 -->
   <div class="content-container">
-    <h2>メニュー</h2>
-    <a href="#">学生管理</a>
-    <div>成績管理</div>
-    <a href="score.jsp">成績登録</a>
-    <a href="#">成績参照</a><br>
-    <a href="#">科目管理</a>
+    <h2>成績管理</h2>
+    
   </div>
 </div>
 
