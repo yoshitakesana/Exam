@@ -114,12 +114,17 @@ public class StudentDAO extends DAO {
     public List<Student> findAll() throws Exception {
         List<Student> list = new ArrayList<>();
         Connection con = getConnection();
-
         PreparedStatement st = con.prepareStatement("SELECT * FROM STUDENT ORDER BY NO");
-
         ResultSet rs = st.executeQuery();
+
         while (rs.next()) {
-            Student student = mapResultSetToStudent(rs);
+            Student student = new Student();
+            student.setNo(rs.getString("NO"));
+            student.setName(rs.getString("NAME"));
+            student.setEntyear(rs.getInt("ENT_YEAR"));
+            student.setClassnum(rs.getString("CLASS_NUM"));
+            student.setIsattend(rs.getBoolean("IS_ATTEND"));
+            student.setSchoolcd(rs.getString("SCHOOL_CD"));
             list.add(student);
         }
 
@@ -129,6 +134,7 @@ public class StudentDAO extends DAO {
 
         return list;
     }
+
 
     // 🎯 ResultSet → Student Bean 変換（共通処理）
     private Student mapResultSetToStudent(ResultSet rs) throws Exception {
