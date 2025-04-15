@@ -8,19 +8,25 @@ import java.sql.Statement;
 
 public class H2DataChecker {
     // H2データベースをTCPモードで接続
-    private static final String JDBC_URL = "jdbc:h2:~/db2_test2";
+    private static final String JDBC_URL = "jdbc:h2:~/test2";
     private static final String USER = "sa";
     private static final String PASSWORD = "";
 
     public static void main(String[] args) {
+
         try (Connection conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
              Statement stmt = conn.createStatement()) {
-
             checkTable(stmt, "CLASS_NUM");
+            checkTable(stmt, "SCHOOL");
             checkTable(stmt, "STUDENT");
+            checkTable(stmt, "SUBJECT");
+            checkTable(stmt, "TEACHER");
+            checkTable(stmt, "TEST");
+
 
 
         } catch (SQLException e) {
+        	System.out.println("ここ");
             e.printStackTrace();
         }
     }
