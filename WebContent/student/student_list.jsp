@@ -1,3 +1,5 @@
-<!-- 学生管理一覧画面（STDM001) 検索 -->
-<%@ page contentType="text/html; charset=UTF-8" %>
-<jsp:include page="../header.jsp" />
+<td>${student.no}</td>
+<td>${student.name}</td>
+<td>${student.entyear}</td>
+<td>${student.classnum}</td>
+<td>${student.schoolcd}</td>

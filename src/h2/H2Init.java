@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class H2Init {
     // H2データベースのファイル保存パス
-	private static final String JDBC_URL = "jdbc:h2:~/book"; // TCPモード
+	private static final String JDBC_URL = "jdbc:h2:~/test2"; // TCPモード
 	private static final String USER = "sa";
 	private static final String PASSWORD = "";
 
@@ -19,9 +19,12 @@ public class H2Init {
 	        System.out.println("H2データベース（TCPモード）に接続しました。");
 
 	        // SQLファイルを実行
-	        executeSqlFile(conn, "src/resources/product.sql");
-	        executeSqlFile(conn, "src/resources/customer.sql");
-	        executeSqlFile(conn, "src/resources/purchase.sql");
+	        executeSqlFile(conn, "src/resources/CLASS_NUM.sql");
+	        executeSqlFile(conn, "src/resources/SCHOOL.sql");
+	        executeSqlFile(conn, "src/resources/STUDENT.sql");
+	        executeSqlFile(conn, "src/resources/SUBJECT.sql");
+	        executeSqlFile(conn, "src/resources/TEACHER.sql");
+	        executeSqlFile(conn, "src/resources/TEST.sql");
 
 	        System.out.println("データベースの初期化が完了しました！");
 	    } catch (SQLException | IOException e) {
