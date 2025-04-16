@@ -22,7 +22,7 @@ public class DAO {
         // 初回だけJNDIからDataSourceを取得（環境に応じて"jdbc/book"は変更）
         if (ds == null) {
             InitialContext ic = new InitialContext();
-            ds = (DataSource) ic.lookup("java:/comp/env/jdbc/book");
+            ds = (DataSource) ic.lookup("java:/comp/env/jdbc/test2");
         }
 
         // データソースから接続を取得して返す
