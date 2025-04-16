@@ -1,8 +1,13 @@
 package bean;
 
-public class School implements java.io.Serializable{
+import java.io.Serializable;
+
+public class School implements Serializable{
 	private String cd;
 	private String name;
+
+	public School() {
+	}
 
 	public String getCd() {
 		return cd;

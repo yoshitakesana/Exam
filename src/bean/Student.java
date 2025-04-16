@@ -3,13 +3,15 @@ package bean;
 public class Student implements java.io.Serializable{
 	private String no;
 	private String name;
-	private Integer entyear;
-	private String classnum;
-	private Boolean isattend;
-	private String schoolcd;
-	public String getno() {
-		return no;
+	private Integer entYear;
+	private String classNum;
+	private Boolean isAttend;
+	private School school;
+
+	public Student() {
 	}
+
+
 	public String getNo() {
 		return no;
 	}
@@ -22,29 +24,29 @@ public class Student implements java.io.Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getEntyear() {
-		return entyear;
+	public Integer getEntYear() {
+		return entYear;
 	}
-	public void setEntyear(Integer entyear) {
-		this.entyear = entyear;
+	public void setEntYear(Integer entYear) {
+		this.entYear = entYear;
 	}
-	public String getClassnum() {
-		return classnum;
+	public String getClassNum() {
+		return classNum;
 	}
-	public void setClassnum(String classnum) {
-		this.classnum = classnum;
+	public void setClassNum(String classNum) {
+		this.classNum = classNum;
 	}
-	public Boolean getIsattend() {
-		return isattend;
+	public Boolean isAttend() {
+		return isAttend;
 	}
-	public void setIsattend(Boolean isattend) {
-		this.isattend = isattend;
+	public void setAttend(Boolean isAttend) {
+		this.isAttend = isAttend;
 	}
-	public String getSchoolcd() {
-		return schoolcd;
+	public School getSchool() {
+		return school;
 	}
-	public void setSchoolcd(String schoolcd) {
-		this.schoolcd = schoolcd;
+	public void setSchool(School school) {
+		this.school = school;
 	}
 
 
