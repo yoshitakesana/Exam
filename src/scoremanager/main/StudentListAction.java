@@ -1,4 +1,4 @@
-package main;
+package scoremanager.main;
 
 import java.io.IOException;
 import java.util.List;
@@ -39,6 +39,7 @@ public class StudentListAction extends HttpServlet {
 
             // 検索結果をリクエストスコープに保存
             request.setAttribute("list", list);  // ここを 'students' ではなく 'list' に変更
+
 
             // student_list.jspに画面遷移
             RequestDispatcher dispatcher = request.getRequestDispatcher("/student/student_list.jsp");

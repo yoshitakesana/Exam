@@ -36,7 +36,7 @@ public class Student implements java.io.Serializable{
 	public void setClassNum(String classNum) {
 		this.classNum = classNum;
 	}
-	public Boolean isAttend() {
+	public Boolean getAttend() {
 		return isAttend;
 	}
 	public void setAttend(Boolean isAttend) {

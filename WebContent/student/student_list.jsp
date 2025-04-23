@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List" %>
 <%@ page import="bean.Student" %>
-<%@ page import="dao.StudentDAO" %>
+<%@ page import="dao.StudentDao" %>
 
 <!DOCTYPE html>
 <html lang="ja">
