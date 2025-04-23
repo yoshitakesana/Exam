@@ -1,21 +1,24 @@
 package dao;
 
 import java.sql.ResultSet;
-import java.util.List;
+import java.util.*;
 
 import bean.School;
 import bean.Student;
 
 public class StudentDao extends Dao {
-	private String baseSql = "";
-	
+	private String baseSql = "select * from student where school_cd = ?";
+
 	public Student get(String no) throws Exception {
 		// 学生番号で学生情報取得
-		
+
 	}
 	private List<Student> postFilter(ResultSet rSet, School school) throws Exception {
 	    // ResultSetとSchoolオブジェクトを使って
 		// フィルタリング後の学生リストを生成する
+		List<Student> list = new ArrayList<>();
+		try {
+		}
 	}
 	public List<Student> filter(School school, int entYear, String classNum, boolean isAttend) throws Exception {
 	    // 学校、入学年、クラス番号、出席状況でフィルタリング
