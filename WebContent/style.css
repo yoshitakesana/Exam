@@ -1,0 +1,68 @@
+/* 親コンテナ：左右に並べるために flex を使う */
+.main-container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 100px); /* ヘッダー＆フッターの高さを差し引く */
+}
+
+/* 左側メニューのデザイン */
+.menu-wrapper {
+    width: 20%; /* 幅は好きに調整可能：例 20% */
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+
+/* 右側のコンテンツエリア */
+.content-container {
+    flex-grow: 1; /* 残りのスペースを全部使う */
+    padding: 20px;
+    background-color: #fff;
+}
+
+ul {
+    list-style-type: none; /* ・ を消す */
+    padding-left: 0;
+}
+
+ul ul {
+    margin-left: 20px;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #f5f5f5;
+}
+
+.card a {
+    display: block;
+    margin-top: 10px;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+/* 色ごとのクラス */
+.red {
+    background-color: #e5bcbc;
+}
+
+.green {
+    background-color: #cde9cd;
+}
+
+.purple {
+    background-color: #ccc8e5;
+}
