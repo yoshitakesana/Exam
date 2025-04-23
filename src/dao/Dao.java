@@ -7,22 +7,23 @@ import javax.sql.DataSource;
 
 /**
  * データベース接続を行う共通DAOクラス。
- * 他のDAOクラスはこのクラスを継承して DB接続機能を使います。
+ * 他のDAOクラスはこのクラスを継承してDB接続機能を利用します。
  */
 public class Dao {
-    // データソースを1回だけ取得して使い回す（シングルトンっぽい使い方）
-    private static DataSource ds;
+
+    // データソースを1度だけ取得して再利用する
+    static DataSource ds;
 
     /**
      * データベース接続を取得するメソッド。
      * @return Connection データベース接続オブジェクト
      * @throws Exception 接続に失敗した場合に例外がスローされます
      */
-    protected Connection getConnection() throws Exception {
-        // 初回だけJNDIからDataSourceを取得（環境に応じて"jdbc/book"は変更）
+    public Connection getConnection() throws Exception {
+        // データソースが未取得の場合はJNDIから取得する（初回のみ）
         if (ds == null) {
             InitialContext ic = new InitialContext();
-            ds = (DataSource) ic.lookup("java:/comp/env/jdbc/test2");
+            ds = (DataSource) ic.lookup("java:/comp/env/jdbc/test2"); // 環境に応じたJNDI名を使用
         }
 
         // データソースから接続を取得して返す
