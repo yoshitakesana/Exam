@@ -4,7 +4,10 @@ public class Teacher implements java.io.Serializable{
 	private String id;
 	private String password;
 	private String name;
-	private String school_cd;
+	private School school;
+
+	public Teacher(){
+	}
 
 	public String getId() {
 		return id;
@@ -24,11 +27,11 @@ public class Teacher implements java.io.Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSchool_cd() {
-		return school_cd;
+	public School getSchool() {
+		return school;
 	}
-	public void setSchool_cd(String school_cd) {
-		this.school_cd = school_cd;
+	public void setSchool(School school) {
+		this.school = school;
 	}
 
 
