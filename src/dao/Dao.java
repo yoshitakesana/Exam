@@ -9,7 +9,7 @@ import javax.sql.DataSource;
  * データベース接続を行う共通DAOクラス。
  * 他のDAOクラスはこのクラスを継承して DB接続機能を使います。
  */
-public class DAO {
+public class Dao {
     // データソースを1回だけ取得して使い回す（シングルトンっぽい使い方）
     private static DataSource ds;
 
