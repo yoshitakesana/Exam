@@ -2,7 +2,7 @@
 
 <%
     Object user = session.getAttribute("user");
-    if (user == null) {
+    if (user != null) {
 %>
 
 <ul>
