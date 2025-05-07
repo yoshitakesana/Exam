@@ -3,7 +3,11 @@
 
 <h2>科目情報登録</h2>
 <label>登録完了しました</label>
-<p><a href="subject_create.jsp">戻る</a></p>
-<p><a href="subject_list.jsp">科目一覧</a></p>
+<!-- 科目登録画面に戻るリンク -->
+<a href="../SubjectCreateAction">戻る</a>
+<!--科目一覧画面のリンク -->
+
+<a href="<%= request.getContextPath() %>/subjectlist">科目一覧</a>
+
 
 <jsp:include page="../footer.jsp" />

@@ -42,8 +42,9 @@ public class SubjectCreateExecuteAction extends HttpServlet{
             SubjectDao dao = new SubjectDao();
             dao.create(subject);
 
-            // 登録が成功したら、科目一覧画面にリダイレクト
-            response.sendRedirect("subjectlist");
+         // ✅ 登録が成功したら、完了画面にフォワード
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/subject/subject_create_done.jsp");
+            dispatcher.forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();
