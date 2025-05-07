@@ -11,10 +11,11 @@
     <title>生徒情報検索</title>
 </head>
 <body>
+
     <h1>生徒情報検索</h1>
 
     <!-- 絞り込み条件入力フォーム -->
-    <form action="studentlist" method="get">
+    <form action="studentlist" method0="get">
         <label for="entYear">入学年度：</label>
         <input type="number" name="entYear" id="entYear"><br>
 
