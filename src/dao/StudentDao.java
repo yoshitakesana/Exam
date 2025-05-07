@@ -111,6 +111,35 @@ public class StudentDao extends Dao{
 
 	}
 
+	public List<Student> selectAll() throws Exception {
+	    List<Student> list = new ArrayList<>();
+	    Connection con = getConnection();
+
+	    PreparedStatement st = con.prepareStatement("SELECT * FROM STUDENT");
+	    ResultSet rs = st.executeQuery();
+
+	    while (rs.next()) {
+	        Student stu = new Student();
+	        stu.setNo(rs.getString("NO"));              // 学籍番号
+	        stu.setName(rs.getString("NAME"));          // 名前
+	        stu.setEntYear(rs.getInt("ENT_YEAR"));      // 入学年度
+	        stu.setClassNum(rs.getString("CLASS_NUM")); // クラス
+	        stu.setAttend(rs.getBoolean("IS_ATTEND"));  // 在学か否か
+	        stu.setSchoolCd(rs.getString("SCHOOL_CD")); // 学校コード
+	        list.add(stu);
+	    }
+
+
+	    st.close();
+	    con.close();
+
+	    return list;
+	}
+
+
 
 	}
+
+
+
 

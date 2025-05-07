@@ -6,7 +6,27 @@ public class Student implements java.io.Serializable{
 	private Integer entYear;
 	private String classNum;
 	private Boolean isAttend;
-	private School school;
+	private String schoolCd;
+
+	public Boolean getIsAttend() {
+		return isAttend;
+	}
+
+
+	public void setIsAttend(Boolean isAttend) {
+		this.isAttend = isAttend;
+	}
+
+
+	public String getSchoolCd() {
+		return schoolCd;
+	}
+
+
+	public void setSchoolCd(String schoolCd) {
+		this.schoolCd = schoolCd;
+	}
+
 
 	public Student() {
 	}
@@ -42,12 +62,7 @@ public class Student implements java.io.Serializable{
 	public void setAttend(Boolean isAttend) {
 		this.isAttend = isAttend;
 	}
-	public School getSchool() {
-		return school;
-	}
-	public void setSchool(School school) {
-		this.school = school;
-	}
+
 
 
 

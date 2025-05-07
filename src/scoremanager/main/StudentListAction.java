@@ -33,13 +33,19 @@ public class StudentListAction extends HttpServlet {
                 isAttend = Boolean.parseBoolean(isAttendStr);
             }
 
-            // DAOを使って検索
+            // DAOを使って検索（絞り込み条件がない場合は全件検索を行う）
             StudentDao dao = new StudentDao();
-            List<Student> list = dao.search(entYear, classNum, isAttend);
+            List<Student> list;
+
+            // 絞り込み条件が全てnullまたは空文字の場合、全件検索を実行
+            if (entYear == null && classNum == null && isAttend == null) {
+                list = dao.selectAll();  // 全件検索
+            } else {
+                list = dao.search(entYear, classNum, isAttend);  // 絞り込み検索
+            }
 
             // 検索結果をリクエストスコープに保存
             request.setAttribute("list", list);  // ここを 'students' ではなく 'list' に変更
-
 
             // student_list.jspに画面遷移
             RequestDispatcher dispatcher = request.getRequestDispatcher("/student/student_list.jsp");
