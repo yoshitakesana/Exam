@@ -1,4 +1,5 @@
 package dao;
+//学生一覧・学生登録・学生削除
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -136,9 +137,39 @@ public class StudentDao extends Dao{
 	    return list;
 	}
 
+	public void create(Student student) throws Exception {
+        Connection con = getConnection();
 
+        // SQL文の準備（入学年度・学生番号・学生名。クラス番号をINSERT）
+        String sql = "INSERT INTO STUDENT (NO, NAME, ENT_YEAR, CLASS_NUM, IS_ATTEND, SCHOOL_CD) VALUES (?, ?, ?, ?, ?, ?)";
+
+        // SQLの実行準備
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setString(1, student.getNo());
+        st.setString(2, student.getName());
+        st.setInt(3, student.getEntYear());
+        st.setString(4, student.getClassNum());
+
+        // 🔹 IS_ATTEND は新規登録時は常に「在学中（true）」にする
+        st.setBoolean(5, true);
+
+        // 🔹 SCHOOL_CD は固定値を設定する（例："oom"）
+        st.setString(6, "oom");
+
+        // SQLの実行
+        st.executeUpdate();
+
+        // リソース解放
+        st.close();
+        con.close();
+	}
 
 	}
+
+
+
+
+
 
 
 
