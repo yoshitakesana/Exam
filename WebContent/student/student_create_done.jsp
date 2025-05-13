@@ -5,9 +5,8 @@
 <h2>学生情報登録</h2>
 <p>登録が完了しました</p>
 
-<c:url var="student_createUrl" value="/student_create.jsp" />
-<a href="${student_createUrl }">戻る</a>
-<a href="<!-- 学生管理一覧画面のリンク -->">学生一覧</a>
+<a href="/StudentCreateAction">戻る</a>
+<a href="/StudentListAction">学生一覧</a>
 
 <jsp:include page="../footer.jsp" />
 
