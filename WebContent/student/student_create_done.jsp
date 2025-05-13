@@ -6,7 +6,7 @@
 <p>登録が完了しました</p>
 
 <a href="/StudentCreateAction">戻る</a>
-<a href="/StudentListAction">学生一覧</a>
+<a href="<%= request.getContextPath() %>/studentlist">学生一覧</a>
 
 <jsp:include page="../footer.jsp" />
 
