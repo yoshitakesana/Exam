@@ -1,4 +1,3 @@
-//科目更新・科目一覧・科目登録・科目削除
 package dao;
 
 import java.sql.Connection;
@@ -10,80 +9,93 @@ import java.util.List;
 import bean.Subject;
 
 public class SubjectDao extends Dao {
-	public List<Subject> findAll() throws Exception {
-	    List<Subject> list = new ArrayList<>();
-	    // DB接続を取得
-	    Connection con = getConnection();
-
-	    // SQL文の準備
-	    String sql = "SELECT SCHOOL_CD, CD, NAME FROM SUBJECT ORDER BY SCHOOL_CD, CD";
-
-	    // SQLの実行準備
-	    PreparedStatement st = con.prepareStatement(sql);
-	    ResultSet rs = st.executeQuery();
-
-	    // 結果をリストに詰める
-	    while (rs.next()) {
-	        Subject subject = new Subject();
-	        subject.setSchoolCd(rs.getString("SCHOOL_CD"));
-	        subject.setCd(rs.getString("CD"));
-	        subject.setName(rs.getString("NAME"));
-
-	        // リストに追加
-	        list.add(subject);
-	    }
-
-	    // リソース解放
-	    st.close();
-	    con.close();
-
-	    return list;
-	}
-	public void create(Subject subject) throws Exception {
+    // 科目一覧取得
+    public List<Subject> findAll() throws Exception {
+        List<Subject> list = new ArrayList<>();
         Connection con = getConnection();
+        String sql = "SELECT SCHOOL_CD, CD, NAME FROM SUBJECT ORDER BY SCHOOL_CD, CD";
 
-        // SQL文の準備（科目コードと科目名をINSERT）
+        PreparedStatement st = con.prepareStatement(sql);
+        ResultSet rs = st.executeQuery();
+
+        while (rs.next()) {
+            Subject subject = new Subject();
+            subject.setSchoolCd(rs.getString("SCHOOL_CD"));
+            subject.setCd(rs.getString("CD"));
+            subject.setName(rs.getString("NAME"));
+            list.add(subject);
+        }
+
+        st.close();
+        con.close();
+        return list;
+    }
+
+    // 科目の作成
+    public void create(Subject subject) throws Exception {
+        Connection con = getConnection();
         String sql = "INSERT INTO SUBJECT (SCHOOL_CD, CD, NAME) VALUES (?, ?, ?)";
 
-        // SQLの実行準備
         PreparedStatement st = con.prepareStatement(sql);
         st.setString(1, "oom");  // SCHOOL_CD の値（例: 'oom'）
-        st.setString(2, subject.getCd());  // 受け取った科目コード
-        st.setString(3, subject.getName());  // 受け取った科目名
+        st.setString(2, subject.getCd());
+        st.setString(3, subject.getName());
 
-        // SQLの実行
         st.executeUpdate();
-
-        // リソース解放
         st.close();
         con.close();
     }
-	//↓削除機能
 
-	    // 科目削除メソッド（科目コードで削除）
-	    public boolean delete(String cd) throws Exception {
-	        Connection con = getConnection();
+    // 科目削除
+    public boolean delete(String cd) throws Exception {
+        Connection con = getConnection();
+        String sql = "DELETE FROM SUBJECT WHERE CD = ?";
 
-	        // SQL文の準備
-	        String sql = "DELETE FROM SUBJECT WHERE CD = ?";
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setString(1, cd);
 
-	        // SQLの実行準備
-	        PreparedStatement st = con.prepareStatement(sql);
-	        st.setString(1, cd);
+        int rowsDeleted = st.executeUpdate();
+        st.close();
+        con.close();
 
-	        // 実行結果を取得（削除件数が1以上なら成功）
-	        int rowsDeleted = st.executeUpdate();
+        return rowsDeleted > 0;
+    }
 
-	        // リソース解放
-	        st.close();
-	        con.close();
+    // ✅ 科目更新（学校コードは無視する）
+    public boolean update(String cd, String name) throws Exception {
+        Connection con = getConnection();
+        String sql = "UPDATE SUBJECT SET NAME = ? WHERE CD = ?";
 
-	        // 削除が成功したかどうかを返す
-	        return rowsDeleted > 0;
-	    }
-	}
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setString(1, name);
+        st.setString(2, cd);
 
+        int rowsUpdated = st.executeUpdate();
+        st.close();
+        con.close();
 
+        return rowsUpdated > 0;
+    }
 
+    // ✅ 科目検索（科目コードのみで検索）
+    public Subject findByCd(String cd) throws Exception {
+        Connection con = getConnection();
+        String sql = "SELECT CD, NAME FROM SUBJECT WHERE CD = ?";
 
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setString(1, cd);
 
+        ResultSet rs = st.executeQuery();
+
+        Subject subject = null;
+        if (rs.next()) {
+            subject = new Subject();
+            subject.setCd(rs.getString("CD"));
+            subject.setName(rs.getString("NAME"));
+        }
+
+        st.close();
+        con.close();
+        return subject;
+    }
+}
