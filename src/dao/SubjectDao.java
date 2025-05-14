@@ -58,8 +58,31 @@ public class SubjectDao extends Dao {
         st.close();
         con.close();
     }
+	//↓削除機能
 
+	    // 科目削除メソッド（科目コードで削除）
+	    public boolean delete(String cd) throws Exception {
+	        Connection con = getConnection();
+
+	        // SQL文の準備
+	        String sql = "DELETE FROM SUBJECT WHERE CD = ?";
+
+	        // SQLの実行準備
+	        PreparedStatement st = con.prepareStatement(sql);
+	        st.setString(1, cd);
+
+	        // 実行結果を取得（削除件数が1以上なら成功）
+	        int rowsDeleted = st.executeUpdate();
+
+	        // リソース解放
+	        st.close();
+	        con.close();
+
+	        // 削除が成功したかどうかを返す
+	        return rowsDeleted > 0;
+	    }
 	}
+
 
 
 

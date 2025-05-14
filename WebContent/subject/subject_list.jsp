@@ -26,6 +26,7 @@
                 <th>学校コード</th>
                 <th>科目コード</th>
                 <th>科目名</th>
+                <th>操作</th> <!-- ★追加 -->
             </tr>
         </thead>
         <tbody>
@@ -34,6 +35,15 @@
                     <td>${subject.schoolCd}</td>
                     <td>${subject.cd}</td>
                     <td>${subject.name}</td>
+                    <td>
+                        <!-- ★削除ボタンの追加 -->
+                        <form action="${pageContext.request.contextPath}/SubjectDeleteAction" method="POST">
+
+                            <input type="hidden" name="cd" value="${subject.cd}">
+                            <input type="hidden" name="schoolCd" value="${subject.schoolCd}">
+                            <input type="submit" value="削除">
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>
