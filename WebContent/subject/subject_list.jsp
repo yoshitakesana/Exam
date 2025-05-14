@@ -44,7 +44,7 @@
                             <input type="submit" value="削除">
                         </form>
                         <!-- ★変更ボタン -->
-                        <form action="${pageContext.request.contextPath}/subject/subject_update.jsp" method="GET">
+                        <form action="${pageContext.request.contextPath}/SubjectUpdateAction" method="GET">
                             <input type="hidden" name="cd" value="${subject.cd}">
                             <input type="hidden" name="schoolCd" value="${subject.schoolCd}">
                             <input type="submit" value="変更">

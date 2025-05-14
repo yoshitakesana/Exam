@@ -27,7 +27,9 @@ public class SubjectUpdateExecuteAction extends HttpServlet {
 
             if (isUpdated) {
                 System.out.println("✅ 更新成功");
-                response.sendRedirect(request.getContextPath() + "/SubjectListAction");
+                ///↓ここがエラー
+                response.sendRedirect(request.getContextPath() + "/subject/SubjectListAction");
+
             } else {
                 System.out.println("❌ 更新失敗");
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "科目の更新に失敗しました。");
