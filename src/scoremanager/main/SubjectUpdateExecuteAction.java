@@ -15,23 +15,22 @@ public class SubjectUpdateExecuteAction extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // リクエストパラメータからデータを取得
         String cd = request.getParameter("cd");
         String name = request.getParameter("name");
 
-        System.out.println("更新する科目コード: " + cd);
-        System.out.println("更新後の科目名: " + name);
+        System.out.println("更新対象の科目コード: " + cd);
+        System.out.println("新しい科目名: " + name);
 
         try {
             SubjectDao subjectDao = new SubjectDao();
             boolean isUpdated = subjectDao.update(cd, name);
 
             if (isUpdated) {
-                System.out.println("✅ 更新成功");
-                ///↓ここがエラー
-                response.sendRedirect(request.getContextPath() + "/subject/SubjectListAction");
-
+                // 更新成功した場合、完了画面に遷移
+                response.sendRedirect(request.getContextPath() + "/subject/subject_update_done.jsp");
             } else {
-                System.out.println("❌ 更新失敗");
+                // 更新失敗した場合、エラーメッセージを表示
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "科目の更新に失敗しました。");
             }
         } catch (Exception e) {
