@@ -41,17 +41,17 @@
 
 /* 赤：学生管理 */
 .card-red {
-    background-color: #e74c3c;
+    background-color: #a9403a;
 }
 
 /* 緑：成績管理 */
 .card-green {
-    background-color: #27ae60;
+    background-color: #556b2f;
 }
 
 /* 紫：科目管理 */
 .card-purple {
-    background-color: #8e44ad;
+    background-color: #84728c;
 }
 
 /* メニュー項目スタイル */
@@ -75,3 +75,28 @@
 .menu-list li a:hover {
     color: #007bff;
 }
+.titlehaikei{
+	background-color:#a0bfc9
+}
+
+.filter-form {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.filter-form label {
+    margin-right: 5px;
+}
+
+.filter-form input[type="number"],
+.filter-form input[type="text"] {
+    width: 100px;
+}
+
+.filter-form input[type="submit"] {
+    padding: 5px 10px;
+}
+

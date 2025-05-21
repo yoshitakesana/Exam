@@ -11,7 +11,6 @@
 <!-- 左メニューエリア -->
 <%@ include file="/side.jsp" %>
 
-    <!-- 右コンテンツエリア -->
 <!-- 右コンテンツエリア -->
 <div class="content-container">
 <h1>メニュー</h1>
