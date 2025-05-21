@@ -1,34 +1,36 @@
-<!-- 学生変更（STDM003）入力 -->
 <%@ page contentType="text/html; charset=UTF-8" %>
 <jsp:include page="../header.jsp" />
 
 <h2>学生情報変更</h2>
 
-<form action="StudentUpdateAction" method="post">
-	<label for="ent_year">入学年度</label><br>
-	<input type="text" id="ent_year" name="ent_year" value="${ ent_year }" readonly>
-	<br><br>
+<form action="${pageContext.request.contextPath}/StudentUpdateExecuteAction" method="post">
 
-	<label for="no">学生番号</label><br>
-	<input type="text" id="no" name="no" value="${ no }" readonly>
-	<br><br>
+    <!-- 表示だけする（送信にはhiddenを使う） -->
+    <label>入学年度</label><br>
+    <span>${student.entYear}</span><br>
+    <input type="hidden" name="entYear" value="${student.entYear}">
+    <br><br>
 
+    <label>学生番号</label><br>
+    <span>${student.no}</span><br>
+    <input type="hidden" name="no" value="${student.no}">
+    <br><br>
 
-	<label for="name">氏名</label><br>
-	<input type="text" id="name" name="name" value="${ name }" maxlength="30" required>
-	<br><br>
+    <!-- 変更可能な項目 -->
+    <label for="name">氏名</label><br>
+    <input type="text" id="name" name="name" value="${student.name}" maxlength="30" required>
+    <br><br>
 
-	<label for="class_num">クラス</label><br>
-	<select id="class_num" name="class_num">
-		<!-- クラス番号テーブルからクラス番号を動的に取得して表示 -->
-	</select>
-	<br><br>
+    <label for="class_num">クラス</label><br>
+    <!-- ここをselectからinputテキストに変更 -->
+    <input type="text" id="class_num" name="classNum" value="${student.classNum}" maxlength="10" required>
+    <br><br>
 
-	<label for="is_attend">在学中</label><br>
-	<input type="checkbox" id="is_attend" name="is_attend">
-	<br><br>
+    <label for="is_attend">在学中</label><br>
+    <input type="checkbox" id="is_attend" name="isAttend" value="true" ${student.attend ? "checked" : ""}>
+    <br><br>
 
-	<input type="submit" value="変更">
+    <input type="submit" value="変更">
 </form>
 
-<a href="studentList.jsp">戻る</a>
+<a href="${pageContext.request.contextPath}/StudentListAction">戻る</a>

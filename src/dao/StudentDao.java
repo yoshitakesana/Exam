@@ -164,9 +164,60 @@ public class StudentDao extends Dao{
         con.close();
 	}
 
+	// 学生番号と学校コードで1件取得
+	public Student findByNo(String no, String schoolCd) throws Exception {
+	    Student student = null;
 
+	    String sql = "SELECT * FROM STUDENT WHERE NO = ? AND SCHOOL_CD = ?";
 
+	    Connection con = getConnection();
+	    try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+	        pstmt.setString(1, no);
+	        pstmt.setString(2, schoolCd);
+	        ResultSet rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            student = new Student();
+	            student.setNo(rs.getString("NO"));
+	            student.setName(rs.getString("NAME"));
+	            student.setEntYear(rs.getInt("ENT_YEAR"));  // ← ENTYEAR → ENT_YEAR に直しましょう
+	            student.setClassNum(rs.getString("CLASS_NUM"));
+	            student.setIsAttend(rs.getBoolean("IS_ATTEND"));
+	            student.setSchoolCd(rs.getString("SCHOOL_CD"));
+	        }
+
+	    } finally {
+	        con.close();
+	    }
+
+	    return student;
 	}
+
+    // 学生情報の更新
+    public void update(Student student) throws Exception {
+        String sql = "UPDATE STUDENT SET NAME = ?, CLASS_NUM = ?, ENT_YEAR = ?, IS_ATTEND = ? WHERE NO = ?";
+
+        Connection con = getConnection();  // ← ここも getConnection()
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setString(1, student.getName());
+            pstmt.setString(2, student.getClassNum());
+            pstmt.setInt(3, student.getEntYear());
+            pstmt.setBoolean(4, student.getIsAttend());
+            pstmt.setString(5, student.getNo());
+
+            pstmt.executeUpdate();
+
+        } finally {
+            con.close();  // 接続を閉じる
+        }
+    }
+		}
+
+
+
+
+
 
 
 
