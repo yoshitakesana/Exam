@@ -17,11 +17,11 @@
 
   <div class="content-container">
     <h2>メニュー</h2>
-    <a href="#">学生管理</a>
+    <a href="<%= request.getContextPath() %>/studentlist">学生一覧</a>
     <div>成績管理</div>
-    <a href="score.jsp">成績登録</a>
+    <a href="<%= request.getContextPath() %>/SubjectCreateAction">科目登録</a>
     <a href="#">成績参照</a><br>
-    <a href="#">科目管理</a>
+    <a href="<%= request.getContextPath() %>/subjectlist">科目一覧</a>
   </div>
 </div>
 
