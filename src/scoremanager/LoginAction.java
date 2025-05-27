@@ -9,27 +9,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/login")
+import bean.Teacher;
+import dao.TeacherDao;
+
+@WebServlet("/LoginAction")
 public class LoginAction extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         // フォームから ID と パスワード を取得
-        String userId = request.getParameter("userId");
+        String id = request.getParameter("id");
         String password = request.getParameter("password");
+        TeacherDao dao = new TeacherDao();
+        Teacher teacher = dao.authenticate(id, password);
 
-        // セッションに保存（後でヘッダーなどで表示できるように）
-        HttpSession session = request.getSession();
-        session.setAttribute("userId", userId);
 
-        // パスワードの確認（簡易的な例としてそのまま遷移）
-        // ※ここでパスワードを実際に確認するロジックが必要です
-        if (userId != null && password != null) {
-            // 本来はここでパスワードのチェックなどが入ります
-            // 例: if (isValidUser(userId, password)) { ... }
+
+
+        // パスワードの確認
+        if (teacher != null) {
+        	// セッションに保存（後でヘッダーなどで表示できるように）
+        	HttpSession session = request.getSession();
+        	session.setAttribute("teacher", teacher);
 
             // メインページに遷移
-            request.getRequestDispatcher("/menu.jsp").forward(request, response);
+            request.getRequestDispatcher("menu.jsp");
         } else {
             // パスワードやIDが不正の場合、エラーメッセージを表示（例）
             request.setAttribute("errorMessage", "ID または パスワードが不正です");
