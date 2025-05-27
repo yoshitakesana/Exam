@@ -1,31 +1,42 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>学生管理システム</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<jsp:include page="header.jsp" />
+<%@ include file="/header.jsp" %>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 
+ <%-- タイトル + CSS --%>
+
+<!-- メニューとコンテンツを横並びに配置するコンテナ -->
 <div class="main-container">
-  <div class="menu-wrapper">
-    <%@ include file="side.jsp" %>
-  </div>
 
-  <div class="content-container">
-    <h2>メニュー</h2>
-    <a href="#">学生管理</a>
-    <div>成績管理</div>
-    <a href="score.jsp">成績登録</a>
-    <a href="#">成績参照</a><br>
-    <a href="#">科目管理</a>
-  </div>
+<!-- 左メニューエリア -->
+<%@ include file="/side.jsp" %>
+
+<!-- 右コンテンツエリア -->
+<div class="content-container">
+<h1>メニュー</h1>
+
+    <div class="card-container">
+<!-- 学生管理 -->
+<div class="card card-red">
+<a href="<%= request.getContextPath() %>/studentlist">学生管理</a>
 </div>
 
-<jsp:include page="footer.jsp" />
+        <!-- 成績管理 -->
+<div class="card card-green">
+<p>成績管理</p>
+<!-- ↓ここの下の２つはまだ -->
+<a href="<c:url value='/main/TestRegistAction'/>">成績登録</a><br>
+<a href="<c:url value='/main/TestListAction'/>">成績参照</a>
+</div>
 
-</body>
-</html>
+        <!-- 科目管理 -->
+<div class="card card-purple">
+    <a href="<%= request.getContextPath() %>/subjectlist">科目管理</a>
+</div>
+</div>
+</div>
+
+</div>
+
+
+<%@ include file="/footer.jsp" %>

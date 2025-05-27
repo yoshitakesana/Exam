@@ -1,0 +1,102 @@
+/* 左メニュー全体を固定 */
+.menu-container {
+    position: fixed;
+    top: 110;
+    left: 0;
+    width: 130px; /* 必要に応じて幅調整 */
+    height: 100vh; /* 画面全体の高さ */
+    padding:10px 10px 20px 10px;
+    overflow-y: auto;
+    z-index: 1000; /* 他要素より前面に */
+}
+
+.content-container {
+    margin-left: 140px; /* side.jsp幅200px + 余白10px */
+    padding: 20px;
+    margin-top: 3px;
+}
+
+
+.card-container {
+    display: flex;           /* 横並びにする */
+    gap: 10px;               /* カード間の隙間 */
+    width: 100%;             /* 親の幅いっぱい */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.card {
+    flex: 1;                 /* 3つ並んだら自動的に均等幅 */
+    padding: 20px;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+
+
+
+/* 赤：学生管理 */
+.card-red {
+    background-color: #a9403a;
+}
+
+/* 緑：成績管理 */
+.card-green {
+    background-color: #556b2f;
+}
+
+/* 紫：科目管理 */
+.card-purple {
+    background-color: #84728c;
+}
+
+/* メニュー項目スタイル */
+.menu-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-list li {
+    margin-bottom: 15px;
+}
+
+.menu-list li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.menu-list li a:hover {
+    color: #007bff;
+}
+.titlehaikei{
+	background-color:#a0bfc9
+}
+
+.filter-form {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.filter-form label {
+    margin-right: 5px;
+}
+
+.filter-form input[type="number"],
+.filter-form input[type="text"] {
+    width: 100px;
+}
+
+.filter-form input[type="submit"] {
+    padding: 5px 10px;
+}
+

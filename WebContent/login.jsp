@@ -1,7 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <jsp:include page="header.jsp" />
 
-<h2>ログインページ</h2>
+<script>
+	function togglePasswordVisibility() {
+		var passwordField = document.getElementById("password");
+		if (passwordField.type === "password") {
+			passwordField.type = "text";
+		} else {
+			passwordField.type = "password";
+		}
+	}
+</script>
+
+
+
+<h2>ログイン</h2>
 
 <%
     // エラーメッセージがセットされている場合だけ表示
@@ -15,10 +28,22 @@
     }
 %>
 
-<form method="post" action="login">
-    ID：<input type="text" name="userId"><br>
-    パスワード：<input type="password" name="password"><br>
-    <input type="submit" value="ログイン">
+
+<form method="post" action="LoginAction">
+	<label for="id" class="id_label">ID</label>
+	<input type="text" id="id" name="id" value="${ id }" maxlength="10" required style="ime-mode:disabled;">
+	<br><br>
+
+	<label for="password" class="pass_label">パスワード</label>
+	<input type="password" id="password" maxlength="30" required style="ime-mode:disabled;">
+	<br><br>
+
+	<input type="checkbox" id="check_pass" onclick="togglePasswordVisibility()">
+	<label for="check_pass">パスワードを表示</label>
+	<br><br>
+
+	<input type="submit" value="ログイン">
+
 </form>
 
 <jsp:include page="footer.jsp" />

@@ -1,18 +1,64 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.List" %>
+<%@ page import="bean.Subject" %>
+
+<%@ include file="/header.jsp" %>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+
+<!-- 左メニューエリア -->
+<%@ include file="/side.jsp" %>
+
+<!-- 右コンテンツエリア -->
+<div class="content-container">
 
 
-<%@ page contentType="text/html; charset=UTF-8" %>
-<jsp:include page="../header.jsp" />
+    <title>科目管理</title>
 
-<h2>科目管理</h2>
-<p><a href="subject_create.jsp">新規登録</a></p>
-<!--↓テーブルの中身はまだ -->
-<table border="1">
-    <!-- ④, ⑤ テーブルヘッダ -->
-    <tr>
-        <th>科目コード</th>
-        <th>科目名</th>
-    </tr>
-</table>
 
+<h1>科目管理</h1>
+
+<c:if test="${empty list}">
+    <p>現在、登録されている科目はありません。</p>
+</c:if>
+
+<c:if test="${not empty list}">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>学校コード</th>
+                <th>科目コード</th>
+                <th>科目名</th>
+                <th>操作</th> <!-- ★追加 -->
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="subject" items="${list}">
+                <tr>
+                    <td>${subject.schoolCd}</td>
+                    <td>${subject.cd}</td>
+                    <td>${subject.name}</td>
+                    <td>
+                        <!-- ★削除ボタンの追加 -->
+                        <form action="${pageContext.request.contextPath}/SubjectDeleteAction" method="POST">
+
+                            <input type="hidden" name="cd" value="${subject.cd}">
+                            <input type="hidden" name="schoolCd" value="${subject.schoolCd}">
+                            <input type="submit" value="削除">
+                        </form>
+                        <!-- ★変更ボタン -->
+                        <form action="${pageContext.request.contextPath}/SubjectUpdateAction" method="GET">
+                            <input type="hidden" name="cd" value="${subject.cd}">
+                            <input type="hidden" name="schoolCd" value="${subject.schoolCd}">
+                            <input type="submit" value="変更">
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</c:if>
+</div>
 
 <jsp:include page="../footer.jsp" />
+

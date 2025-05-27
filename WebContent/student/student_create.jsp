@@ -69,32 +69,28 @@
     }
 </script>
 
-<form action="complete.jsp" method="post" id="ent_year" onsubmit="return validateForm()">
-    <label>入学年度</label>
-    <select name="ent_year">
-        <option value="">--------</option>
-        <c:forEach var="ent_year_item" items="${requestScope.ent_yearValues}">
-            <option value="${ent_year_item}">${ent_year_item}</option>
+<form action="<%= request.getContextPath() %>/StudentCreateExecuteAction" method="post">
+
+
+
+    <label for="no">学生番号:</label>
+    <input type="text" name="no" id="no" placeholder="学籍番号を入力してください" required><br>
+
+
+<label for="name">学生名:</label>
+    <input type="text" name="name" id="name"placeholder="名前を入力してください" required><br>
+
+    <label for="entYear">入学年度:</label>
+    <select name="entYear" id="entYear">
+        <c:forEach var="year" items="${yearList}">
+            <option value="${year}">${year}</option>
         </c:forEach>
-    </select>
-    <div id="error-message-year" class="error"></div> <!-- 入学年度のエラーメッセージ -->
+    </select><br>
 
-    <label>学籍番号</label>
-    <input type="text" name="no" value="${no}" maxlength="10" required placeholder="学籍番号を入力してください">
-    <div id="error-message-no" class="error"></div> <!-- 学籍番号のエラーメッセージ -->
+    <label for="classNum">クラス番号:</label>
+    <input type="text" name="classNum" id="classNum" required placeholder="クラス番号を入力してください"><br>
 
-    <label>氏名</label>
-    <input type="text" name="name" value="${name}" maxlength="30" required placeholder="氏名を入力してください">
-
-    <label>クラス</label>
-    <select name="class_num">
-        <c:forEach var="class_num_item" items="${requestScope.class_numValues}">
-            <option value="${class_num_item}">${class_num_item}</option>
-        </c:forEach>
-    </select>
-
-    <input type="submit" value="登録して終了">
-    <a href="home.jsp" class="back-link">戻る</a>
+    <button type="submit">登録</button>
 </form>
 
 <jsp:include page="../footer.jsp" />

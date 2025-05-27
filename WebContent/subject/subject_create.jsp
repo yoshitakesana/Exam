@@ -5,7 +5,9 @@
 <h2>科目情報登録</h2> <!-- ① 見出し（h2） -->
 
 <!-- ②〜⑤ 入力フォーム -->
-<form action="〇〇java" method="post">
+<form action="<%= request.getContextPath() %>/SubjectCreateExecuteAction" method="post">
+
+
     <!-- ② ラベル -->
     <label for="cd">科目コード：</label>
     <!-- ③ テキストボックス -->
