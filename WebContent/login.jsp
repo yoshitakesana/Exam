@@ -29,7 +29,7 @@
 %>
 
 
-<form method="post" action="LoginAction">
+<form method="post" action="<%= request.getContextPath() %>/LoginExcecute">
 	<label for="id" class="id_label">ID</label>
 	<input type="text" id="id" name="id" value="${ id }" maxlength="10" required style="ime-mode:disabled;">
 	<br><br>
