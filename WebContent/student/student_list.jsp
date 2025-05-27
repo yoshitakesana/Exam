@@ -16,6 +16,11 @@
 
     <h1>学生管理</h1>
 
+    <!-- 新規登録ボタン -->
+<form action="${pageContext.request.contextPath}/StudentCreateAction" method="get" style="margin-bottom: 1em;">
+    <input type="submit" value="新規登録（学生）">
+</form>
+
     <!-- 絞り込み条件入力フォーム -->
     <form action="${pageContext.request.contextPath}/studentlist" method="get" class="filter-form">
         <label for="entYear">入学年度：</label>
@@ -53,7 +58,7 @@
                         <td>${student.classNum}</td>
                         <td><c:out value="${student.isAttend ? '在学中' : '卒業'}"/></td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/studentlist" method="get">
+                            <form action="${pageContext.request.contextPath}/StudentUpdateAction" method="get">
                                 <input type="hidden" name="studentNo" value="${student.no}">
                                 <input type="hidden" name="schoolCd" value="${student.schoolCd}">
                                 <input type="submit" value="変更">
