@@ -18,6 +18,12 @@
 
 <h1>科目管理</h1>
 
+<!-- 新規登録ボタン -->
+<form action="${pageContext.request.contextPath}/SubjectCreateAction" method="GET" style="margin-bottom: 20px;">
+    <input type="submit" value="科目新規登録">
+</form>
+
+
 <c:if test="${empty list}">
     <p>現在、登録されている科目はありません。</p>
 </c:if>
