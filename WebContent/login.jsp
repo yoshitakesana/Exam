@@ -35,7 +35,7 @@
 	<br><br>
 
 	<label for="password" class="pass_label">パスワード</label>
-	<input type="password" id="password" maxlength="30" required style="ime-mode:disabled;">
+	<input type="password" id="password" maxlength="30" name="password" required style="ime-mode:disabled;">
 	<br><br>
 
 	<input type="checkbox" id="check_pass" onclick="togglePasswordVisibility()">
