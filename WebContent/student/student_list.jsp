@@ -53,7 +53,7 @@
                         <td>${student.classNum}</td>
                         <td><c:out value="${student.isAttend ? '在学中' : '卒業'}"/></td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/studentlist" method="get">
+                            <form action="${pageContext.request.contextPath}/StudentUpdateAction" method="get">
                                 <input type="hidden" name="studentNo" value="${student.no}">
                                 <input type="hidden" name="schoolCd" value="${student.schoolCd}">
                                 <input type="submit" value="変更">
