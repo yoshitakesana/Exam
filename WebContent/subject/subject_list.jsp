@@ -3,15 +3,18 @@
 <%@ page import="java.util.List" %>
 <%@ page import="bean.Subject" %>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>科目管理</title>
-</head>
-<body>
+<%@ include file="/header.jsp" %>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 
-<jsp:include page="../header.jsp" />
+<!-- 左メニューエリア -->
+<%@ include file="/side.jsp" %>
+
+<!-- 右コンテンツエリア -->
+<div class="content-container">
+
+
+    <title>科目管理</title>
+
 
 <h1>科目管理</h1>
 
@@ -55,8 +58,7 @@
         </tbody>
     </table>
 </c:if>
+</div>
 
 <jsp:include page="../footer.jsp" />
 
-</body>
-</html>

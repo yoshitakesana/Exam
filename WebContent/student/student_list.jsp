@@ -3,27 +3,34 @@
 <%@ page import="java.util.List" %>
 <%@ page import="bean.Student" %>
 <%@ page import="dao.StudentDao" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>生徒情報検索</title>
-</head>
-<body>
+<%@ include file="/header.jsp" %>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 
-    <h1>生徒情報検索</h1>
+<!-- 左メニューエリア -->
+<%@ include file="/side.jsp" %>
+
+<!-- 右コンテンツエリア -->
+<div class="content-container">
+
+    <h1>学生管理</h1>
+
+    <!-- 新規登録ボタン -->
+<form action="${pageContext.request.contextPath}/StudentCreateAction" method="get" style="margin-bottom: 1em;">
+    <input type="submit" value="新規登録（学生）">
+</form>
 
     <!-- 絞り込み条件入力フォーム -->
-    <form action="studentlist" method0="get">
+    <form action="${pageContext.request.contextPath}/studentlist" method="get" class="filter-form">
         <label for="entYear">入学年度：</label>
-        <input type="number" name="entYear" id="entYear"><br>
+        <input type="number" name="entYear" id="entYear">
 
         <label for="classNum">クラス番号：</label>
-        <input type="text" name="classNum" id="classNum"><br>
+        <input type="text" name="classNum" id="classNum">
 
         <label for="isAttend">在学中：</label>
-        <input type="checkbox" name="isAttend" value="true"> 在学中<br>
+        <input type="checkbox" name="isAttend" value="true">
 
         <input type="submit" value="検索">
     </form>
@@ -39,6 +46,7 @@
                     <th>入学年度</th>
                     <th>クラス番号</th>
                     <th>在学中</th>
+                    <th>操作</th> <!-- ★ 変更操作 -->
                 </tr>
             </thead>
             <tbody>
@@ -48,15 +56,19 @@
                         <td>${student.name}</td>
                         <td>${student.entYear}</td>
                         <td>${student.classNum}</td>
-                        <td>${student.isAttend ? '在学中' : '卒業'}</td>
+                        <td><c:out value="${student.isAttend ? '在学中' : '卒業'}"/></td>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/StudentUpdateAction" method="get">
+                                <input type="hidden" name="studentNo" value="${student.no}">
+                                <input type="hidden" name="schoolCd" value="${student.schoolCd}">
+                                <input type="submit" value="変更">
+                            </form>
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
     </c:if>
+</div>
 
-    <c:if test="${empty list}">
-        <p>検索結果がありません。</p>
-    </c:if>
-</body>
-</html>
+<%@ include file="/footer.jsp" %>
