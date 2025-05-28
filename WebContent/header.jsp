@@ -11,11 +11,10 @@
     	bean.Teacher teacher = (bean.Teacher) session.getAttribute("teacher");
     	if (teacher != null) {
     	%>
-    		<span><%= teacher.getName() %>様 <a href="Logout">ログアウト</a></span>
+    		<span><%= teacher.getName() %>様 <a href="<%= request.getContextPath() %>/LogoutAction">ログアウト</a></span>
     	<%
     	}
     	%>
-    	<%= teacher.getClass().getName() %>
     </div>
 </div>
 <hr>
