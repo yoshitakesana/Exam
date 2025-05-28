@@ -33,7 +33,7 @@ public class LoginAction extends HttpServlet {
         	session.setAttribute("teacher", teacher);
 
             // メインページに遷移
-            request.getRequestDispatcher("menu.jsp");
+            request.getRequestDispatcher("menu.jsp").forward(request, response);;
         } else {
             // パスワードやIDが不正の場合、エラーメッセージを表示（例）
             request.setAttribute("errorMessage", "ID または パスワードが不正です");

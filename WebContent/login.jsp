@@ -1,5 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<jsp:include page="header.jsp" />
+<%
+    // セッションを破棄して新しく開始
+    session.invalidate();
+    session = request.getSession(true); // 新しいセッションを開始
+%>
+
 
 <script>
 	function togglePasswordVisibility() {
@@ -29,7 +34,7 @@
 %>
 
 
-<form method="post" action="<%= request.getContextPath() %>/LoginExcecute">
+<form method="post" action="<%= request.getContextPath() %>/LoginAction">
 	<label for="id" class="id_label">ID</label>
 	<input type="text" id="id" name="id" value="${ id }" maxlength="10" required style="ime-mode:disabled;">
 	<br><br>
