@@ -98,4 +98,24 @@ public class SubjectDao extends Dao {
         con.close();
         return subject;
     }
+
+    // 全科目取得（必要であれば学校コードでフィルタ）
+    public List<Subject> selectAll() throws Exception {
+        Connection conn = getConnection();
+        String sql = "SELECT cd, name FROM subject ORDER BY cd";  // 学校コードがあるなら WHERE school_cd = ? を追加
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+
+        List<Subject> list = new ArrayList<>();
+        while (rs.next()) {
+            Subject s = new Subject();
+            s.setCd(rs.getString("cd"));
+            s.setName(rs.getString("name"));
+            list.add(s);
+        }
+
+        stmt.close();
+        conn.close();
+        return list;
+    }
 }

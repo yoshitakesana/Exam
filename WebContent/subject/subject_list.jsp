@@ -3,7 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="bean.Subject" %>
 
-<%@ include file="/header.jsp" %>
+
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 
 <!-- 左メニューエリア -->

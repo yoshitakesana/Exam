@@ -44,8 +44,8 @@ public class StudentListAction extends HttpServlet {
                 list = dao.search(entYear, classNum, isAttend);  // 絞り込み検索
             }
 
-            // 検索結果をリクエストスコープに保存
-            request.setAttribute("list", list);  // ここを 'students' ではなく 'list' に変更
+         // 検索結果をリクエストスコープに保存
+            request.setAttribute("list", list);  // ここを 'studentList' に変更
 
             // student_list.jspに画面遷移
             RequestDispatcher dispatcher = request.getRequestDispatcher("/student/student_list.jsp");
