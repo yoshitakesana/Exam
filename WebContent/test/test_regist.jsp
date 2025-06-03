@@ -3,9 +3,11 @@
 
 <%@ include file="/side.jsp" %>
 
+<!-- 省略：共通インクルードやスタイル -->
+
 <h1 style="margin-left: 220px;">成績登録</h1>
 
-<div style="margin-left: 220px;"> <!-- ← ここで全体を右にずらす -->
+<div style="margin-left: 220px;">
 
 <%
     int currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
@@ -39,13 +41,27 @@
     </select><br>
 
     回数：
-    <select name="times">
-        <option value="1" <c:if test="${param.times == '1'}">selected</c:if>>1</option>
-        <option value="2" <c:if test="${param.times == '2'}">selected</c:if>>2</option>
+    <select name="no">
+        <option value="1" <c:if test="${param.no == '1'}">selected</c:if>>1</option>
+        <option value="2" <c:if test="${param.no == '2'}">selected</c:if>>2</option>
     </select><br>
 
     <input type="submit" value="検索">
 </form>
+
+<!-- ここから追加部分 -->
+<c:if test="${not empty param.subjectCd && not empty param.no}">
+    <p style="margin-left: 220px; font-weight: bold; margin-top: 20px;">
+        科目：
+        <c:forEach var="subj" items="${subjectList}">
+            <c:if test="${subj.cd == param.subjectCd}">
+                ${subj.name}
+            </c:if>
+        </c:forEach>
+        （${param.no}回）
+    </p>
+</c:if>
+<!-- 追加部分ここまで -->
 
 <c:if test="${not empty list}">
     <form action="${pageContext.request.contextPath}/testregistexecute" method="post">
@@ -59,7 +75,7 @@
                     <td>${stu.name}</td>
                     <td>
                         <input type="hidden" name="studentNo" value="${stu.no}">
-                        <input type="number" name="score" min="0" max="100">
+                        <input type="number" name="point" min="0" max="100">
                     </td>
                 </tr>
             </c:forEach>
@@ -68,12 +84,13 @@
         <input type="hidden" name="entYear" value="${param.entYear}">
         <input type="hidden" name="classNum" value="${param.classNum}">
         <input type="hidden" name="subjectCd" value="${param.subjectCd}">
-        <input type="hidden" name="times" value="${param.times}">
+        <input type="hidden" name="no" value="${param.no}">
+        <input type="hidden" name="schoolCd" value="${sessionScope.user.school.cd}">
 
         <input type="submit" value="登録">
     </form>
 </c:if>
 
-</div> <!-- ← ここでずらし終わり -->
+</div>
 
 <jsp:include page="../footer.jsp" />

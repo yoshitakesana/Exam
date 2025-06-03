@@ -23,19 +23,21 @@ public class LoginAction extends HttpServlet {
         TeacherDao dao = new TeacherDao();
         Teacher teacher = dao.authenticate(id, password);
 
-
-
-
         // パスワードの確認
         if (teacher != null) {
-        	// セッションに保存（後でヘッダーなどで表示できるように）
-        	HttpSession session = request.getSession();
-        	session.setAttribute("teacher", teacher);
+            // セッションを取得
+            HttpSession session = request.getSession();
+
+            // teacher としても保存（既存処理）
+            session.setAttribute("teacher", teacher);
+
+            // user としても保存（JSP などで共通的に扱うため）
+            session.setAttribute("user", teacher);
 
             // メインページに遷移
-            request.getRequestDispatcher("menu.jsp").forward(request, response);;
+            request.getRequestDispatcher("menu.jsp").forward(request, response);
         } else {
-            // パスワードやIDが不正の場合、エラーメッセージを表示（例）
+            // パスワードやIDが不正の場合、エラーメッセージを表示
             request.setAttribute("errorMessage", "ID または パスワードが不正です");
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
