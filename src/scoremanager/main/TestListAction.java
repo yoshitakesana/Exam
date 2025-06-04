@@ -1,4 +1,3 @@
-//成績参照 まだ一ミリもできていない
 package scoremanager.main;
 
 import java.io.IOException;
@@ -12,9 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.ClassNum;
 import bean.Subject;
+import bean.User;
 import dao.ClassNumDao;
 import dao.SubjectDao;
 
@@ -25,6 +26,15 @@ public class TestListAction extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+    		// セッションからユーザー情報を取得
+    		HttpSession session = request.getSession();
+    		User user = (User) session.getAttribute("user");
+
+    		if (user == null){
+    			response.sendRedirect("login.jsp");
+    			return;
+    			}
 
         try {
             // 現在の年を取得してリクエストスコープへ
@@ -39,13 +49,16 @@ public class TestListAction extends HttpServlet {
             request.setAttribute("yearList", yearList);
 
 
-            // クラス一覧を取得
+            // 所属学校クラス一覧を取得
+            int schoolId = user.getSchool().getSchool_id(); // UserクラスのgetSchoolId()
             ClassNumDao classDao = new ClassNumDao();
-            List<ClassNum> classList = classDao.selectAll();
+            List<ClassNum> classList = classDao.selectBySchoolId(schoolId);
+            request.setAttribute("classList", classList);
 
             // 科目一覧を取得
             SubjectDao subjectDao = new SubjectDao();
             List<Subject> subjectList = subjectDao.selectAll();
+            request.setAttribute("subjectList", subjectList);
 
             // リクエストスコープにセット
             request.setAttribute("classList", classList);

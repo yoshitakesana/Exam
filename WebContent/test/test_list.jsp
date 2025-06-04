@@ -11,13 +11,15 @@
 
 <h2>成績管理</h2>
 
+
+
 <form action="＊＊＊＊" method="post">
 	<div>
 		<label for="f1">入学年度</label>
 		<select name="f1" id="f1">
 			<option value=""> -------- </option>
-			<c:forEach var="year" items="${ yearList }">
-				<option value="${ year }">${ year }</option>
+			<c:forEach var="year" items="${ yearList}">
+				<option value="${ year}">${ year}</option>
 			</c:forEach>
 		</select>
 	</div>

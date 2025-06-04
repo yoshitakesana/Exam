@@ -50,4 +50,25 @@ public class ClassNumDao extends Dao {  // ★ Dao クラスを継承
         conn.close();
         return list;
     }
+
+    //ユーザーが所属する学校のクラスだけを取得する
+    public List<ClassNum> selectBySchoolId(int schoolId) throws Exception {
+    	Connection conn = getConnection();
+    	String sql = "SELECT DISTINCT class_num FROM student WHERE school_id = ? ORDER BY class_num";
+    	PreparedStatement stmt = conn.prepareStatement(sql);
+    	stmt.setInt(1, schoolId);
+    	ResultSet rs = stmt.executeQuery();
+
+    	List<ClassNum> list = new ArrayList<>();
+    	while (rs.next()) {
+    		ClassNum c = new ClassNum();
+    		c.setClass_num(rs.getString("class_num"));
+    		list.add(c);
+    	}
+
+    	rs.close();
+    	stmt.close();
+    	conn.close();
+    	return list;
+    }
 }
