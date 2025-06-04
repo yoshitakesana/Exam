@@ -15,7 +15,10 @@
 	<div>
 		<label for="f1">入学年度</label>
 		<select name="f1" id="f1">
-			<!-- トグルの入学年度の表示 -->
+			<option value=""> -------- </option>
+			<c:forEach var="year" items="${ yearList }">
+				<option value="${ year }">${ year }</option>
+			</c:forEach>
 		</select>
 	</div>
 	<div>

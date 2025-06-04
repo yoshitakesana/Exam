@@ -3,6 +3,7 @@ package scoremanager.main;
 
 import java.io.IOException;
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -30,6 +31,14 @@ public class TestListAction extends HttpServlet {
             int currentYear = Year.now().getValue();
             request.setAttribute("currentYear", currentYear);
 
+            // 入学年度リストを生成（例：過去5年分）
+            List<Integer> yearList = new ArrayList<>();
+            for (int i = 0; i < 5; i++) {
+                yearList.add(currentYear - i);
+            }
+            request.setAttribute("yearList", yearList);
+
+
             // クラス一覧を取得
             ClassNumDao classDao = new ClassNumDao();
             List<ClassNum> classList = classDao.selectAll();
@@ -43,7 +52,7 @@ public class TestListAction extends HttpServlet {
             request.setAttribute("subjectList", subjectList);
 
             // JSPへフォワード
-            RequestDispatcher dispatcher = request.getRequestDispatcher("test/test_regist.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("test/test_list.jsp");
             dispatcher.forward(request, response);
 
         } catch (Exception e) {
