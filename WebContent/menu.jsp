@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@ include file="/header.jsp" %>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 
  <%-- タイトル + CSS --%>
@@ -25,7 +24,7 @@
 <div class="card card-green">
 <p>成績管理</p>
 <!-- ↓ここの下の２つはまだ -->
-<a href="<c:url value='/main/TestRegistAction'/>">成績登録</a><br>
+<a href="<%= request.getContextPath() %>/testregist">成績登録</a><br>
 <a href="<c:url value='/main/TestListAction'/>">成績参照</a>
 </div>
 

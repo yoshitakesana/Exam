@@ -212,6 +212,33 @@ public class StudentDao extends Dao{
             con.close();  // 接続を閉じる
         }
     }
+
+ // entYear と classNum で学生を検索する
+    public List<Student> selectByEntYearAndClass(int entYear, String classNum) throws Exception {
+        Connection conn = getConnection();
+        String sql = "SELECT * FROM student WHERE ent_year = ? AND class_num = ? ORDER BY no";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, entYear);
+        stmt.setString(2, classNum);
+        ResultSet rs = stmt.executeQuery();
+
+        List<Student> list = new ArrayList<>();
+        while (rs.next()) {
+            Student s = new Student();
+            s.setNo(rs.getString("no"));
+            s.setName(rs.getString("name"));
+            s.setEntYear(rs.getInt("ent_year"));
+            s.setClassNum(rs.getString("class_num"));
+            // 必要ならその他の項目も設定
+            list.add(s);
+        }
+
+        rs.close();
+        stmt.close();
+        conn.close();
+        return list;
+    }
+
 		}
 
 

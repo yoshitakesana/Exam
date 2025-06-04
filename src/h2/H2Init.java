@@ -10,13 +10,13 @@ import java.sql.Statement;
 
 public class H2Init {
     // H2データベースのファイル保存パス
-	private static final String JDBC_URL = "jdbc:h2:~/test2"; // TCPモード
+	private static final String JDBC_URL = "jdbc:h2:~/test2"; // 組み込みモード
 	private static final String USER = "sa";
 	private static final String PASSWORD = "";
 
 	public static void main(String[] args) {
 	    try (Connection conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD)) {
-	        System.out.println("H2データベース（TCPモード）に接続しました。");
+	        System.out.println("H2データベース（組み込みモード）に接続しました。");
 
 	        // SQLファイルを実行
 	        executeSqlFile(conn, "src/resources/CLASS_NUM.sql");

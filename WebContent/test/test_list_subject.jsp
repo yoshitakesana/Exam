@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 <!-- GRMR002 科目別成績一覧 -->
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+=======
+<!-- なにもできてないよ -->
+<%@ page contentType="text/html; charset=UTF-8" %>
+
+
+<h2>科目一覧(科目)</h2>
+>>>>>>> branch 'master' of https://github.com/yoshitakesana/Exam.git
 
 
 <%@ include file="/header.jsp" %>
