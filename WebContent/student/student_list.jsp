@@ -4,6 +4,7 @@
 <%@ page import="bean.Student" %>
 <%@ page import="dao.StudentDao" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/header.jsp" %>
 
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
@@ -14,25 +15,28 @@
 <!-- 右コンテンツエリア -->
 <div class="content-container">
 
-    <h1>学生管理</h1>
+   <h1 class="section-title">学生管理</h1>
 
-    <!-- 新規登録ボタン -->
-    <form action="${pageContext.request.contextPath}/StudentCreateAction" method="get" style="margin-bottom: 1em;">
-        <input type="submit" value="新規登録（学生）">
-    </form>
+
+<!-- 新規登録リンク（右寄せ） -->
+<p style="margin-bottom: 1em; text-align: right;">
+    <a href="${pageContext.request.contextPath}/StudentCreateAction" class="link-button">新規登録</a>
+</p>
+
+
 
     <!-- 絞り込み条件入力フォーム -->
     <form action="${pageContext.request.contextPath}/studentlist" method="get" class="filter-form">
         <label for="entYear">入学年度：</label>
         <input type="number" name="entYear" id="entYear" value="${param.entYear}">
 
-        <label for="classNum">クラス番号：</label>
+        <label for="classNum">クラス：</label>
         <input type="text" name="classNum" id="classNum" value="${param.classNum}">
 
         <label for="isAttend">在学中：</label>
         <input type="checkbox" name="isAttend" value="true" <c:if test="${param.isAttend == 'true'}">checked</c:if> >
 
-        <input type="submit" value="検索">
+        <input type="submit" value="絞り込み">
     </form>
 
     <h2>検索結果</h2>

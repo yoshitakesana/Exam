@@ -1,33 +1,79 @@
-/* 左メニュー全体を固定 */
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* 狭い画面で折り返し可能にする */
+}
+
+.search-form label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.section-title {
+    background-color: #e1e1e1;
+    padding: 10px;
+
+}
+
+
+
+.content-container a {
+    color: #007bff; /* ブートストラップの青色 */
+    text-decoration: underline; /* 下線を付ける */
+}
+
+/* ホバー時に色を少し濃くする */
+.content-container a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.flex-between-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 .menu-container {
     position: fixed;
-    top: 110;
+    top: 110px; /* pxを忘れずに */
     left: 0;
-    width: 130px; /* 必要に応じて幅調整 */
-    height: 100vh; /* 画面全体の高さ */
-    padding:10px 10px 20px 10px;
+    width: 130px;
+    height: 100vh;
+    padding: 10px 10px 20px 10px;
     overflow-y: auto;
-    z-index: 1000; /* 他要素より前面に */
+    z-index: 1000;
 }
 
 .content-container {
-    margin-left: 140px; /* side.jsp幅200px + 余白10px */
+    margin-left: 140px;
     padding: 20px;
     margin-top: 3px;
 }
 
-
 .card-container {
-    display: flex;           /* 横並びにする */
-    gap: 10px;               /* カード間の隙間 */
-    width: 100%;             /* 親の幅いっぱい */
+    display: flex;
+    gap: 10px;
+    width: 100%;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
 .card {
-    flex: 1;                 /* 3つ並んだら自動的に均等幅 */
+    flex: 1;
     padding: 20px;
     color: white;
     border-radius: 8px;
@@ -35,9 +81,6 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     box-sizing: border-box;
 }
-
-
-
 
 /* 赤：学生管理 */
 .card-red {
@@ -54,7 +97,6 @@
     background-color: #84728c;
 }
 
-/* メニュー項目スタイル */
 .menu-list {
     list-style-type: none;
     padding: 0;
@@ -67,16 +109,19 @@
 
 .menu-list li a {
     text-decoration: none;
-    color: #333;
+    color: #007bff;
     font-weight: bold;
     transition: color 0.3s;
 }
 
 .menu-list li a:hover {
-    color: #007bff;
+    color: #0065d5;
 }
-.titlehaikei{
-	background-color:#a0bfc9
+
+.titlehaikei {
+    background-color: #cfdbeb;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+    padding: 10px 20px;
 }
 
 .filter-form {
@@ -99,4 +144,3 @@
 .filter-form input[type="submit"] {
     padding: 5px 10px;
 }
-
