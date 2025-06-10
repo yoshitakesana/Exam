@@ -4,7 +4,6 @@
 <%@ page import="bean.Subject" %>
 <%@ include file="/header.jsp" %>
 
-
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 
 <!-- 左メニューエリア -->
@@ -13,59 +12,53 @@
 <!-- 右コンテンツエリア -->
 <div class="content-container">
 
-
     <title>科目管理</title>
 
+    <!-- タイトル -->
+    <h1 class="section-title">科目管理</h1>
 
-<h1>科目管理</h1>
+    <!-- 科目新規登録リンク（右寄せ） -->
+    <div style="text-align: right; margin-bottom: 20px;">
+        <a href="${pageContext.request.contextPath}/SubjectCreateAction"
+           style="color: #0000EE; text-decoration: underline;">
+            新規登録
+        </a>
+    </div>
 
-<!-- 新規登録ボタン -->
-<form action="${pageContext.request.contextPath}/SubjectCreateAction" method="GET" style="margin-bottom: 20px;">
-    <input type="submit" value="科目新規登録">
+    <!-- 科目一覧表示 -->
+    <c:if test="${empty list}">
+        <p>現在、登録されている科目はありません。</p>
+    </c:if>
+
+    <c:if test="${not empty list}">
+        <table class="subject-table">
+            <thead>
+                <tr>
+                    <th>科目コード</th>
+                    <th>科目名</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="subject" items="${list}">
+                    <tr>
+                        <td>${subject.cd}</td>
+                        <td>${subject.name}</td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/SubjectUpdateAction?cd=${subject.cd}&schoolCd=${subject.schoolCd}">変更</a>
+                            　
+                            <form action="${pageContext.request.contextPath}/SubjectDeleteAction" method="post" style="display:inline;">
+    <input type="hidden" name="cd" value="${subject.cd}">
+    <input type="hidden" name="schoolCd" value="${subject.schoolCd}">
+    <input type="submit" value="削除" onclick="return confirm('本当に削除しますか？');" style="background-color:#dc3545; color:white; border:none; padding:4px 10px; border-radius:3px; cursor:pointer;">
 </form>
 
-
-<c:if test="${empty list}">
-    <p>現在、登録されている科目はありません。</p>
-</c:if>
-
-<c:if test="${not empty list}">
-    <table border="1">
-        <thead>
-            <tr>
-                <th>学校コード</th>
-                <th>科目コード</th>
-                <th>科目名</th>
-                <th>操作</th> <!-- ★追加 -->
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="subject" items="${list}">
-                <tr>
-                    <td>${subject.schoolCd}</td>
-                    <td>${subject.cd}</td>
-                    <td>${subject.name}</td>
-                    <td>
-                        <!-- ★削除ボタンの追加 -->
-                        <form action="${pageContext.request.contextPath}/SubjectDeleteAction" method="POST">
-
-                            <input type="hidden" name="cd" value="${subject.cd}">
-                            <input type="hidden" name="schoolCd" value="${subject.schoolCd}">
-                            <input type="submit" value="削除">
-                        </form>
-                        <!-- ★変更ボタン -->
-                        <form action="${pageContext.request.contextPath}/SubjectUpdateAction" method="GET">
-                            <input type="hidden" name="cd" value="${subject.cd}">
-                            <input type="hidden" name="schoolCd" value="${subject.schoolCd}">
-                            <input type="submit" value="変更">
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-</c:if>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
 </div>
 
 <jsp:include page="../footer.jsp" />
-
