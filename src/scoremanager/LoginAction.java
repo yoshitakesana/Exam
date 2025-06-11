@@ -26,13 +26,21 @@ public class LoginAction extends HttpServlet {
         // パスワードの確認
         if (teacher != null) {
             // セッションを取得
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(true);
+            session.setAttribute("user", teacher);
 
             // teacher としても保存（既存処理）
             session.setAttribute("teacher", teacher);
 
             // user としても保存（JSP などで共通的に扱うため）
             session.setAttribute("user", teacher);
+
+            // 学校情報をセット
+            if (teacher.getSchool() != null) {
+            	session.setAttribute("school", teacher.getSchool());
+            } else {
+            	getServletContext().log("ログインユーザーに学生情報が設定されていません。");
+            }
 
             // メインページに遷移
             request.getRequestDispatcher("menu.jsp").forward(request, response);

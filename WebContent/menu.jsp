@@ -26,7 +26,7 @@
 <p>成績管理</p>
 <!-- ↓ここの下の２つはまだ -->
 <a href="<%= request.getContextPath() %>/testregist">成績登録</a><br>
-<a href="<c:url value='/main/TestListAction'/>">成績参照</a>
+<a href="<%= request.getContextPath() %>/testlist">成績参照</a>
 </div>
 
         <!-- 科目管理 -->

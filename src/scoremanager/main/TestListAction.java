@@ -14,27 +14,29 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.ClassNum;
+import bean.School;
 import bean.Subject;
-import bean.User;
 import dao.ClassNumDao;
 import dao.SubjectDao;
 
 @WebServlet("/testlist")  // URLパターンは適宜調整してください
 public class TestListAction extends HttpServlet {
+
+
     private static final long serialVersionUID = 1L;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    		// セッションからユーザー情報を取得
-    		HttpSession session = request.getSession();
-    		User user = (User) session.getAttribute("user");
+    	HttpSession session = request.getSession(true); // 既存のセッションを取得（新規作成しない）
+    	School school = (School) session.getAttribute("school");
 
-    		if (user == null){
-    			response.sendRedirect("login.jsp");
-    			return;
-    			}
+    	if (school == null) {
+    		getServletContext().log("学校情報がセッションに存在しません");
+    		response.sendRedirect("login.jsp");
+    		return;
+    	}
 
         try {
             // 現在の年を取得してリクエストスコープへ
@@ -48,21 +50,20 @@ public class TestListAction extends HttpServlet {
             }
             request.setAttribute("yearList", yearList);
 
+            // 学校IDを取得
+            int schoolId = Integer.parseInt(school.getCd());
+            getServletContext().log("学校情報:" + school.getName() + "（ID: " + school.getCd() + ")");
 
             // 所属学校クラス一覧を取得
-            int schoolId = user.getSchool().getSchool_id(); // UserクラスのgetSchoolId()
-            ClassNumDao classDao = new ClassNumDao();
-            List<ClassNum> classList = classDao.selectBySchoolId(schoolId);
-            request.setAttribute("classList", classList);
+            ClassNumDao classNumDao = new ClassNumDao();
+            List<ClassNum> classList = classNumDao.selectBySchoolId(schoolId);
+            request.setAttribute("clssList", classList);
 
             // 科目一覧を取得
             SubjectDao subjectDao = new SubjectDao();
             List<Subject> subjectList = subjectDao.selectAll();
             request.setAttribute("subjectList", subjectList);
 
-            // リクエストスコープにセット
-            request.setAttribute("classList", classList);
-            request.setAttribute("subjectList", subjectList);
 
             // JSPへフォワード
             RequestDispatcher dispatcher = request.getRequestDispatcher("test/test_list.jsp");
